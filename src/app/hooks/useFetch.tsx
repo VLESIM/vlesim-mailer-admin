@@ -1,22 +1,28 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from 'react';
 
 interface BodyData {
-  [key: string]: string | number | boolean | BodyData
+  [key: string]: string | number | boolean | BodyData;
 }
 
 interface UseFetchParams {
   path: string;
-  method: "GET" | "POST" | "PUT" | "DELETE";
-  body?: BodyData
-  dependencies?: unknown[]
-  timePolling?: number
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  body?: BodyData;
+  dependencies?: unknown[];
+  timePolling?: number;
 }
 
-export function useFetch<T>({path, method, body, dependencies, timePolling}: UseFetchParams) {
+export function useFetch<T>({
+  path,
+  method,
+  body,
+  dependencies,
+  timePolling,
+}: UseFetchParams) {
   const [data, setData] = useState<T | null>();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<Error | null>();
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem('authToken');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,10 +31,10 @@ export function useFetch<T>({path, method, body, dependencies, timePolling}: Use
         const response = await fetch(path, {
           method,
           headers: {
-            "Content-Type": "application/json",
-            ...(token && {Authorization: `Bearer ${token}`}),
+            'Content-Type': 'application/json',
+            ...(token && { Authorization: `Bearer ${token}` }),
           },
-          ...(body && {body: JSON.stringify(body)}),
+          ...(body && { body: JSON.stringify(body) }),
         });
 
         if (!response.ok) {
@@ -55,8 +61,8 @@ export function useFetch<T>({path, method, body, dependencies, timePolling}: Use
     } else {
       fetchData();
     }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [body, method, path, token, ...(dependencies || []), timePolling]);
 
-  return {data, isLoading, errorMessage};
+  return { data, isLoading, errorMessage };
 }

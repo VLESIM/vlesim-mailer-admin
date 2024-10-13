@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 interface CampaignData {
   name: string;
@@ -20,25 +20,25 @@ export const useCampaign = () => {
 
     try {
       const response = await fetch(
-        "http://vlesim-mailer-268611735.us-east-2.elb.amazonaws.com/campaigns",
+        'http://vlesim-mailer-268611735.us-east-2.elb.amazonaws.com/campaigns',
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(campaignData),
-        }
+        },
       );
 
       if (!response.ok) {
-        throw new Error("Failed to create campaign");
+        throw new Error('Failed to create campaign');
       }
 
       const data = await response.json();
       return data;
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "An unknown error occurred"
+        err instanceof Error ? err.message : 'An unknown error occurred',
       );
       throw err;
     } finally {

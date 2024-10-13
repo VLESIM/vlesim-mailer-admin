@@ -1,16 +1,16 @@
-import { Column } from "./interfaces/column.interface.ts";
+import { Column } from './interfaces/column.interface.ts';
 
 export const columnsTable: Column[] = [
   {
-    value: "Campaign Name",
+    value: 'Campaign Name',
   },
   {
-    value: "Message",
+    value: 'Message',
   },
   {
-    value: "Type",
+    value: 'Type',
   },
   {
-    value: "Date",
+    value: 'Date',
   },
 ];

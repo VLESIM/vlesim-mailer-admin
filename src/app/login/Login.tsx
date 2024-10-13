@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   TextField,
   Button,
@@ -11,16 +11,16 @@ import {
   CardContent,
   InputAdornment,
   IconButton,
-} from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+} from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const theme = createTheme();
 
 export const Login: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -28,29 +28,32 @@ export const Login: React.FC = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(import.meta.env.VITE_APP_POST_LOGIN, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_APP_API_URL}/auth/login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: email,
+            password: password,
+          }),
         },
-        body: JSON.stringify({
-          username: email,
-          password: password,
-        }),
-      });
+      );
 
       if (response.ok) {
         const data = await response.json();
-        console.log("🚀 ~ handleSubmit ~ data:", data);
+        console.log('🚀 ~ handleSubmit ~ data:', data);
         const token = data.data.accessToken;
-        localStorage.setItem("authToken", token); // Store the token
-        navigate("/dashboard"); // Navigate after storing the token
+        localStorage.setItem('authToken', token); // Store the token
+        navigate('/dashboard'); // Navigate after storing the token
       } else {
-        setError("Invalid email or password");
+        setError('Invalid email or password');
       }
     } catch (err) {
-      console.error("Error:", err);
-      setError("An error occurred. Please try again later.");
+      console.error('Error:', err);
+      setError('An error occurred. Please try again later.');
     }
   };
 
@@ -65,28 +68,28 @@ export const Login: React.FC = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: "100vh",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '100vh',
           }}
         >
           <Card elevation={5}>
             <CardContent>
               <Box
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
                 }}
               >
                 <Typography
                   component="h1"
                   variant="h4"
-                  sx={{ mb: 3, fontWeight: "bold" }}
+                  sx={{ mb: 3, fontWeight: 'bold' }}
                 >
-                  <span style={{ color: "#1DD63A" }}>VLESIM</span> MAILER
+                  <span style={{ color: '#1DD63A' }}>VLESIM</span> MAILER
                 </Typography>
                 <Box
                   component="form"
@@ -112,7 +115,7 @@ export const Login: React.FC = () => {
                     fullWidth
                     name="password"
                     label="Password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     id="password"
                     autoComplete="current-password"
                     value={password}
@@ -140,7 +143,7 @@ export const Login: React.FC = () => {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    sx={{ mt: 3, mb: 2, bgcolor: "#24244A" }}
+                    sx={{ mt: 3, mb: 2, bgcolor: '#24244A' }}
                   >
                     Sign In
                   </Button>

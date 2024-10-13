@@ -1,5 +1,5 @@
-import React from "react";
-import { Stack, Box, Typography, Divider } from "@mui/material";
+import React from 'react';
+import { Stack, Box, Typography, Divider } from '@mui/material';
 import {
   Refresh as BounceIcon,
   Report as ComplaintIcon,
@@ -11,8 +11,8 @@ import {
   AdsClick,
   Drafts,
   PersonAdd as SubscribeIcon,
-} from "@mui/icons-material";
-import { Campaign, CampaignStats } from "../interfaces";
+} from '@mui/icons-material';
+import { Campaign, CampaignStats } from '../interfaces';
 
 interface EmailsDataProps {
   selectedCampaign: Campaign | null;
@@ -28,36 +28,36 @@ interface StatItem {
 const StatBox: React.FC<{ stats: StatItem[] }> = ({ stats }) => (
   <Box
     sx={{
-      border: "5px dotted #24244A",
-      borderRadius: "4px",
-      padding: "16px",
-      height: "233px",
+      border: '5px dotted #24244A',
+      borderRadius: '4px',
+      padding: '16px',
+      height: '233px',
     }}
   >
     <Stack
       spacing={2}
       sx={{
-        display: "flex",
-        flexDirection: "row",
-        gap: "15%",
-        justifyContent: "center",
-        alignItems: "flex-start",
+        display: 'flex',
+        flexDirection: 'row',
+        gap: '15%',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
       }}
     >
       {stats.map((stat, index) => (
         <Stack
           key={index}
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100px",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: '100px',
           }}
         >
           {React.cloneElement(stat.icon as React.ReactElement, {
-            sx: { fontSize: 60, color: "#24244A" },
+            sx: { fontSize: 60, color: '#24244A' },
           })}
-          <Divider sx={{ width: "100%", my: 1 }} />
+          <Divider sx={{ width: '100%', my: 1 }} />
           <Typography align="center">{stat.label}</Typography>
           <Typography variant="h6" align="center">
             {stat.value}
@@ -83,40 +83,40 @@ export const EmailsData: React.FC<EmailsDataProps> = ({
   const allStats: StatItem[] = [
     {
       icon: <BounceIcon />,
-      label: "Bounces",
+      label: 'Bounces',
       value: campaignStats.totalBounces,
     },
-    { icon: <AdsClick />, label: "Clicks", value: campaignStats.totalClicks },
+    { icon: <AdsClick />, label: 'Clicks', value: campaignStats.totalClicks },
     {
       icon: <ComplaintIcon />,
-      label: "Complaints",
+      label: 'Complaints',
       value: campaignStats.totalComplaints,
     },
     {
       icon: <DeliveryIcon />,
-      label: "Deliveries",
+      label: 'Deliveries',
       value: campaignStats.totalDeliveries,
     },
     {
       icon: <DelayIcon />,
-      label: "Delivery Delays",
+      label: 'Delivery Delays',
       value: campaignStats.totalDeliveryDelays,
     },
-    { icon: <Drafts />, label: "Openings", value: campaignStats.totalOpens },
+    { icon: <Drafts />, label: 'Openings', value: campaignStats.totalOpens },
     {
       icon: <RejectIcon />,
-      label: "Rejects",
+      label: 'Rejects',
       value: campaignStats.totalRejections,
     },
     {
       icon: <RenderFailIcon />,
-      label: "Rendering Failures",
+      label: 'Rendering Failures',
       value: campaignStats.totalRenderingFailures,
     },
-    { icon: <RocketLaunch />, label: "Sent", value: campaignStats.totalSends },
+    { icon: <RocketLaunch />, label: 'Sent', value: campaignStats.totalSends },
     {
       icon: <SubscribeIcon />,
-      label: "Subscribed",
+      label: 'Subscribed',
       value: campaignStats.totalSubscriptions,
     },
   ];

@@ -4,26 +4,26 @@ import {
   // Settings,
   Notifications,
   ChecklistRtl,
-} from "@mui/icons-material";
-import { MenuItemData } from "./interfaces";
+} from '@mui/icons-material';
+import { MenuItemData } from './interfaces';
 
 export const menuItems: MenuItemData[] = [
   {
-    title: "Email Tools",
+    title: 'Email Tools',
     icon: <Email />,
-    subItems: [{ title: "Campaign", path: "/dashboard/campaign" }],
+    subItems: [{ title: 'Campaign', path: '/dashboard/campaign' }],
   },
   {
-    title: "Reports",
+    title: 'Reports',
     icon: <Assessment />,
     subItems: [
       {
-        title: "Reports by campaign",
-        path: "/dashboard/reports/reports-by-campaign",
+        title: 'Reports by campaign',
+        path: '/dashboard/reports/reports-by-campaign',
       },
       {
-        title: "Total report",
-        path: "/dashboard/reports/total-reports",
+        title: 'Total report',
+        path: '/dashboard/reports/total-reports',
       },
     ],
   },
@@ -46,13 +46,13 @@ export const menuItems: MenuItemData[] = [
   //   ],
   // },
   {
-    title: "Suppression List",
+    title: 'Suppression List',
     icon: <ChecklistRtl />,
-    path: "/dashboard/supressionList",
+    path: '/dashboard/supressionList',
   },
   {
-    title: "Notifications",
+    title: 'Notifications',
     icon: <Notifications />,
-    subItems: [{ title: "History", path: "/dashboard/notifications" }],
+    subItems: [{ title: 'History', path: '/dashboard/notifications' }],
   },
 ];

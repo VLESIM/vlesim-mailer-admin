@@ -1,4 +1,4 @@
-import { SvgIcon, SxProps } from "@mui/material";
+import { SvgIcon, SxProps } from '@mui/material';
 
 interface BounceIconProps {
   sx?: SxProps;

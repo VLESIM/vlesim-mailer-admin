@@ -1,5 +1,4 @@
 export const timeAgo = (dateString: string) => {
-
   const now = new Date();
   const date = new Date(dateString);
 
@@ -21,5 +20,4 @@ export const timeAgo = (dateString: string) => {
   } else {
     return `${diffInDays} days ago`;
   }
-
-}
+};

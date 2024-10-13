@@ -1,56 +1,56 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   typography: {
-    fontFamily: "Lato, sans-serif",
+    fontFamily: 'Lato, sans-serif',
     h1: {
-      fontSize: "35px",
+      fontSize: '35px',
       fontWeight: 700,
       lineHeight: 1.5,
     },
     h2: {
-      fontSize: "2rem",
+      fontSize: '2rem',
       fontWeight: 700,
       lineHeight: 1.5,
     },
     h3: {
-      fontSize: "1.5rem",
+      fontSize: '1.5rem',
       fontWeight: 700,
       lineHeight: 1.5,
     },
     h4: {
-      fontSize: "14px",
+      fontSize: '14px',
       fontWeight: 700,
       lineHeight: 1.5,
     },
     body1: {
-      fontSize: "1rem",
+      fontSize: '1rem',
       fontWeight: 400,
       lineHeight: 1.5,
     },
   },
   palette: {
     primary: {
-      main: "#fff",
-      light: "##E8E8E8",
-      dark: "#0d47a1",
-      contrastText: "#fff",
+      main: '#fff',
+      light: '##E8E8E8',
+      dark: '#0d47a1',
+      contrastText: '#fff',
     },
     secondary: {
-      main: "#00DC0D",
-      light: "#EC2000",
-      dark: "#FFAA00",
-      contrastText: "#fff",
+      main: '#00DC0D',
+      light: '#EC2000',
+      dark: '#FFAA00',
+      contrastText: '#fff',
     },
     error: {
-      main: "#F51100",
+      main: '#F51100',
     },
     warning: {
-      main: "#ff9800",
-      contrastText: "#fff",
+      main: '#ff9800',
+      contrastText: '#fff',
     },
     success: {
-      main: "#4caf50",
+      main: '#4caf50',
     },
   },
   spacing: 8,
@@ -58,12 +58,12 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: "8px",
+          borderRadius: '8px',
         },
         containedPrimary: {
-          backgroundColor: "#1976d2",
-          "&:hover": {
-            backgroundColor: "#115293",
+          backgroundColor: '#1976d2',
+          '&:hover': {
+            backgroundColor: '#115293',
           },
         },
       },
@@ -71,15 +71,15 @@ const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          marginBottom: "16px",
+          marginBottom: '16px',
         },
       },
     },
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          fontFamily: "Lato, sans-serif",
-          backgroundColor: "#ECECEC",
+          fontFamily: 'Lato, sans-serif',
+          backgroundColor: '#ECECEC',
         },
       },
     },

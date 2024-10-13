@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Drawer,
   List,
@@ -9,23 +9,23 @@ import {
   ListItemText,
   Collapse,
   styled,
-} from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { MenuItemData } from "./interfaces";
-import { menuItems } from "./data";
+} from '@mui/material';
+import { ExpandMore } from '@mui/icons-material';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { MenuItemData } from './interfaces';
+import { menuItems } from './data';
 
-const drawerWidth = "276px";
+const drawerWidth = '276px';
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
   width: drawerWidth,
   flexShrink: 0,
-  "& .MuiDrawer-paper": {
+  '& .MuiDrawer-paper': {
     width: drawerWidth,
-    boxSizing: "border-box",
+    boxSizing: 'border-box',
     backgroundColor: theme.palette.primary.light,
-    marginTop: "64px",
-    paddingTop: "15px",
+    marginTop: '64px',
+    paddingTop: '15px',
   },
 }));
 

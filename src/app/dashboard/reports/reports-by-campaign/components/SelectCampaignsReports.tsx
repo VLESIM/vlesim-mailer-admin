@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Stack,
   Table,
@@ -16,8 +16,8 @@ import {
   FormControl,
   InputLabel,
   CircularProgress,
-} from "@mui/material";
-import { Campaign } from "../interfaces";
+} from '@mui/material';
+import { Campaign } from '../interfaces';
 
 interface SelectCampaignsReportsProps {
   campaigns: Campaign[];
@@ -32,7 +32,7 @@ export const SelectCampaignsReports: React.FC<SelectCampaignsReportsProps> = ({
 }) => {
   const handleChange = (event: SelectChangeEvent) => {
     const campaign = campaigns.find(
-      (c: Campaign) => c.id === event.target.value
+      (c: Campaign) => c.id === event.target.value,
     );
     if (campaign) {
       onSelectCampaign(campaign);
@@ -48,26 +48,26 @@ export const SelectCampaignsReports: React.FC<SelectCampaignsReportsProps> = ({
   return (
     <Stack
       sx={{
-        display: "flex",
-        bgcolor: "#F9F9F9",
-        flexDirection: "column",
-        padding: "16px",
-        gap: "15px",
+        display: 'flex',
+        bgcolor: '#F9F9F9',
+        flexDirection: 'column',
+        padding: '16px',
+        gap: '15px',
       }}
     >
       {!selectedCampaign ? (
-        <Stack sx={{ minWidth: "1100px" }}>
-          <Typography sx={{ marginBottom: "2%" }}>Select Campaign</Typography>
+        <Stack sx={{ minWidth: '1100px' }}>
+          <Typography sx={{ marginBottom: '2%' }}>Select Campaign</Typography>
           <FormControl
             fullWidth
             sx={{
-              "& .MuiOutlinedInput-root": {
-                "&.Mui-focused fieldset": {
-                  borderColor: "#1DD63A",
+              '& .MuiOutlinedInput-root': {
+                '&.Mui-focused fieldset': {
+                  borderColor: '#1DD63A',
                 },
               },
-              "& .MuiInputLabel-root.Mui-focused": {
-                color: "#1DD63A",
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#1DD63A',
               },
             }}
           >
@@ -75,7 +75,7 @@ export const SelectCampaignsReports: React.FC<SelectCampaignsReportsProps> = ({
             <Select
               labelId="campaign-select-label"
               id="campaign-select"
-              value={selectedCampaign || ""}
+              value={selectedCampaign || ''}
               label="Campaign Name"
               onChange={handleChange}
             >
@@ -91,31 +91,31 @@ export const SelectCampaignsReports: React.FC<SelectCampaignsReportsProps> = ({
         <>
           <TableContainer
             component={Paper}
-            sx={{ bgcolor: "#F9F9F9", width: "1097px", height: "154px" }}
+            sx={{ bgcolor: '#F9F9F9', width: '1097px', height: '154px' }}
           >
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell sx={{ color: "#24244A", fontWeight: 600 }}>
+                  <TableCell sx={{ color: '#24244A', fontWeight: 600 }}>
                     Campaign Name
                   </TableCell>
-                  <TableCell sx={{ color: "#24244A", fontWeight: 600 }}>
+                  <TableCell sx={{ color: '#24244A', fontWeight: 600 }}>
                     State
                   </TableCell>
-                  <TableCell sx={{ color: "#24244A", fontWeight: 600 }}>
+                  <TableCell sx={{ color: '#24244A', fontWeight: 600 }}>
                     Subject Email
                   </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell sx={{ color: "#999797" }}>
+                  <TableCell sx={{ color: '#999797' }}>
                     {selectedCampaign.name}
                   </TableCell>
-                  <TableCell sx={{ color: "#999797" }}>
+                  <TableCell sx={{ color: '#999797' }}>
                     {selectedCampaign.status}
                   </TableCell>
-                  <TableCell sx={{ color: "#999797" }}>
+                  <TableCell sx={{ color: '#999797' }}>
                     {selectedCampaign.subject}
                   </TableCell>
                 </TableRow>
@@ -126,10 +126,10 @@ export const SelectCampaignsReports: React.FC<SelectCampaignsReportsProps> = ({
           <Stack direction="row" spacing={2}>
             <Button
               sx={{
-                bgcolor: "#24244A",
-                height: "32px",
-                width: "62px",
-                color: "white",
+                bgcolor: '#24244A',
+                height: '32px',
+                width: '62px',
+                color: 'white',
               }}
               onClick={handleBack}
             >

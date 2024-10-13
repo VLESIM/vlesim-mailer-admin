@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import {
   Button,
   Stack,
@@ -8,18 +8,18 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material";
+} from '@mui/material';
 
 export const Unsubscribe = () => {
   const [open, setOpen] = useState(false);
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState('');
 
-  const endpointPost = import.meta.env.VITE_APP_POST_UNSUSCRIBE_USERS;
+  const endpointPost = `${import.meta.env.VITE_APP_API_URL}/user/unsubscribe`;
 
   useEffect(() => {
     // Get the token from URL parameters
     const urlParams = new URLSearchParams(window.location.search);
-    const tokenFromUrl = urlParams.get("token");
+    const tokenFromUrl = urlParams.get('token');
     if (tokenFromUrl) {
       setToken(tokenFromUrl);
     }
@@ -36,35 +36,35 @@ export const Unsubscribe = () => {
   const handleUnsubscribe = async () => {
     try {
       const response = await fetch(endpointPost, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           ...(token && { Authorization: `Bearer ${token}` }),
         },
       });
 
       if (!response.ok) {
-        throw new Error("Something went wrong with the request.");
+        throw new Error('Something went wrong with the request.');
       }
-      console.log("🚀 ~ handleUnsubscribe ~ response:", response);
+      console.log('🚀 ~ handleUnsubscribe ~ response:', response);
 
       const data = await response.json();
-      console.log("🚀 ~ handleUnsubscribe ~ data:", data);
+      console.log('🚀 ~ handleUnsubscribe ~ data:', data);
     } catch (error) {
-      console.error("Error creating campaign:", error);
+      console.error('Error creating campaign:', error);
     }
-    console.log("User has unsubscribed");
+    console.log('User has unsubscribed');
     setOpen(false);
   };
 
   return (
     <Stack
       sx={{
-        minHeight: "100vh",
-        justifyContent: "center",
-        alignItems: "center",
-        bgcolor: "#f9f9f9",
-        padding: "20px",
+        minHeight: '100vh',
+        justifyContent: 'center',
+        alignItems: 'center',
+        bgcolor: '#f9f9f9',
+        padding: '20px',
       }}
     >
       <Typography variant="h4" gutterBottom>
@@ -76,7 +76,7 @@ export const Unsubscribe = () => {
 
       {/* Confirmation Dialog */}
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{"Unsubscribe Confirmation"}</DialogTitle>
+        <DialogTitle>{'Unsubscribe Confirmation'}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Are you sure you want to unsubscribe? You will no longer receive
@@ -86,13 +86,13 @@ export const Unsubscribe = () => {
         <DialogActions>
           <Button
             onClick={handleClose}
-            sx={{ bgcolor: "#1DD63A", color: "white" }}
+            sx={{ bgcolor: '#1DD63A', color: 'white' }}
           >
             Cancel
           </Button>
           <Button
             onClick={handleUnsubscribe}
-            sx={{ bgcolor: "red", color: "white" }}
+            sx={{ bgcolor: 'red', color: 'white' }}
             autoFocus
           >
             Unsubscribe

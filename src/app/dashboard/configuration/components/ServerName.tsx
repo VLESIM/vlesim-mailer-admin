@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import React from 'react';
+import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 
 export const ServerName: React.FC = () => {
   return (
@@ -8,10 +8,10 @@ export const ServerName: React.FC = () => {
         sx={{
           width: 1000,
           padding: 3,
-          margin: "0 auto",
-          border: "1px solid #ccc",
+          margin: '0 auto',
+          border: '1px solid #ccc',
           borderRadius: 2,
-          backgroundColor: "white",
+          backgroundColor: 'white',
         }}
       >
         <Stack spacing={2}>
@@ -50,11 +50,11 @@ export const ServerName: React.FC = () => {
         sx={{
           width: 1000,
           padding: 3,
-          margin: "0 auto",
-          border: "1px solid #ccc",
+          margin: '0 auto',
+          border: '1px solid #ccc',
           borderRadius: 2,
-          backgroundColor: "white",
-          marginTop: "20px",
+          backgroundColor: 'white',
+          marginTop: '20px',
         }}
       >
         <Stack spacing={2}>

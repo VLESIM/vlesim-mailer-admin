@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Paper,
   Stack,
@@ -20,9 +20,9 @@ import {
   TextField,
   Snackbar,
   Alert,
-} from "@mui/material";
-import { Edit, Delete, CirclePlay } from "lucide-react";
-import { Campaign } from "../interfaces";
+} from '@mui/material';
+import { Edit, Delete, CirclePlay } from 'lucide-react';
+import { Campaign } from '../interfaces';
 
 interface CampaignHistoryProps {
   campaignsInfo: Campaign[];
@@ -37,45 +37,46 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(
-    null
+    null,
   );
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
     message: string;
-    severity: "success" | "error";
+    severity: 'success' | 'error';
   }>({
     open: false,
-    message: "",
-    severity: "success",
+    message: '',
+    severity: 'success',
   });
   const [editedCampaign, setEditedCampaign] = useState<Campaign | null>(null);
-  const endpoint = import.meta.env.VITE_APP_POST_AND_GET_CAMPAIGNS;
-  const token = localStorage.getItem("authToken");
+  const endpoint = `${import.meta.env.VITE_APP_API_URL}/message`;
+  const token = localStorage.getItem('authToken');
 
   useEffect(() => {
     fetchCampaigns();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [campaignsInfo]);
 
   const fetchCampaigns = async () => {
     try {
       setLoading(true);
       const response = await fetch(endpoint, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           ...(token && { Authorization: `Bearer ${token}` }),
         },
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch campaigns");
+        throw new Error('Failed to fetch campaigns');
       }
 
       const data = await response.json();
       setCampaigns([...data.data]);
     } catch (error) {
-      console.error("Error fetching campaigns:", error);
-      setError("Failed to load campaigns. Please try again later.");
+      console.error('Error fetching campaigns:', error);
+      setError('Failed to load campaigns. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -86,7 +87,7 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
   };
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
@@ -124,8 +125,8 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
     if (!editedCampaign || !selectedCampaign) {
       setSnackbar({
         open: true,
-        message: "No campaign selected for editing.",
-        severity: "error",
+        message: 'No campaign selected for editing.',
+        severity: 'error',
       });
       return;
     }
@@ -135,15 +136,15 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
       const campaignToUpdate = { ...editedCampaign };
 
       // Ensure attachments are always an array
-      if (typeof campaignToUpdate.attachments === "string") {
+      if (typeof campaignToUpdate.attachments === 'string') {
         campaignToUpdate.attachments = (campaignToUpdate.attachments as string)
-          .split(",")
+          .split(',')
           .map((item) => item.trim())
-          .filter((item) => item !== ""); // Remove empty items
+          .filter((item) => item !== ''); // Remove empty items
       }
 
       // Validate required fields
-      const requiredFields = ["name", "date", "subject", "to", "body"];
+      const requiredFields = ['name', 'date', 'subject', 'to', 'body'];
       for (const field of requiredFields) {
         if (!campaignToUpdate[field as keyof Campaign]) {
           throw new Error(`${field} is required.`);
@@ -151,9 +152,9 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
       }
 
       const response = await fetch(`${endpoint}/${selectedCampaign.id}`, {
-        method: "PATCH",
+        method: 'PATCH',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           ...(token && { Authorization: `Bearer ${token}` }),
         },
         body: JSON.stringify(campaignToUpdate),
@@ -162,7 +163,7 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(
-          errorData.message || `HTTP error! status: ${response.status}`
+          errorData.message || `HTTP error! status: ${response.status}`,
         );
       }
 
@@ -170,21 +171,21 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
       // Update the campaigns state with the edited campaign
       setCampaigns(
         campaigns.map((c) =>
-          c.id === selectedCampaign.id ? campaignToUpdate : c
-        )
+          c.id === selectedCampaign.id ? campaignToUpdate : c,
+        ),
       );
 
       setSnackbar({
         open: true,
-        message: "Campaign updated successfully",
-        severity: "success",
+        message: 'Campaign updated successfully',
+        severity: 'success',
       });
 
       handleEditDialogClose();
     } catch (error) {
-      console.error("Error updating campaign:", error);
+      console.error('Error updating campaign:', error);
 
-      let errorMessage = "Failed to update campaign. Please try again later.";
+      let errorMessage = 'Failed to update campaign. Please try again later.';
       if (error instanceof Error) {
         errorMessage = error.message;
       }
@@ -192,7 +193,7 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
       setSnackbar({
         open: true,
         message: errorMessage,
-        severity: "error",
+        severity: 'error',
       });
     }
   };
@@ -201,64 +202,64 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
     if (selectedCampaign) {
       try {
         const response = await fetch(`${endpoint}/${selectedCampaign.id}`, {
-          method: "DELETE",
+          method: 'DELETE',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             ...(token && { Authorization: `Bearer ${token}` }),
           },
         });
 
         if (!response.ok) {
-          throw new Error("Failed to delete campaign");
+          throw new Error('Failed to delete campaign');
         }
         setCampaigns(campaigns.filter((c) => c.id !== selectedCampaign.id));
         handleDeleteDialogClose();
       } catch (error) {
-        console.error("Error deleting campaign:", error);
-        setError("Failed to delete campaign. Please try again later.");
+        console.error('Error deleting campaign:', error);
+        setError('Failed to delete campaign. Please try again later.');
       }
     }
   };
 
   const handleSendEmail = async (campaign: Campaign) => {
     try {
-      const response = await fetch(`${endpoint}/${campaign.id}/launch`, {
-        method: "POST",
+      const response = await fetch(`${endpoint}/${campaign.id}/send`, {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           ...(token && { Authorization: `Bearer ${token}` }),
         },
       });
       if (!response.ok) {
         throw new Error(
-          `Failed to send campaign: ${response.status} ${response.statusText}`
+          `Failed to send campaign: ${response.status} ${response.statusText}`,
         );
       }
       const responseData = await response.json();
-      console.log("Response data:", responseData);
+      console.log('Response data:', responseData);
 
       setSnackbar({
         open: true,
-        message: "Campaign sent successfully",
-        severity: "success",
+        message: 'Campaign sent successfully',
+        severity: 'success',
       });
     } catch (error) {
-      console.error("Error sending campaign:", error);
+      console.error('Error sending campaign:', error);
       setSnackbar({
         open: true,
         message: `Failed to send campaign: ${
-          error instanceof Error ? error.message : "Unknown error"
+          error instanceof Error ? error.message : 'Unknown error'
         }`,
-        severity: "error",
+        severity: 'error',
       });
     }
   };
 
   const handleCloseSnackbar = (
     _event?: React.SyntheticEvent | Event,
-    reason?: string
+    reason?: string,
   ) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
     setSnackbar({ ...snackbar, open: false });
@@ -277,29 +278,29 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
   }
 
   const renderEditField = (key: keyof Campaign, value: string | string[]) => {
-    const isReadOnly = key === "id" || key === "status";
+    const isReadOnly = key === 'id' || key === 'status';
 
-    if (key === "to" && Array.isArray(value)) {
+    if (key === 'to' && Array.isArray(value)) {
       return (
         <TextField
           key={key}
           fullWidth
           margin="normal"
           label={key}
-          value={value.join(", ")}
-          onChange={(e) => handleEditChange(key, e.target.value.split(", "))}
+          value={value.join(', ')}
+          onChange={(e) => handleEditChange(key, e.target.value.split(', '))}
           helperText="Separate multiple email addresses with commas"
           InputProps={{
             readOnly: isReadOnly,
           }}
           sx={{
-            "& .MuiOutlinedInput-root": {
-              "&.Mui-focused fieldset": {
-                borderColor: "#1DD63A",
+            '& .MuiOutlinedInput-root': {
+              '&.Mui-focused fieldset': {
+                borderColor: '#1DD63A',
               },
             },
-            "& .MuiInputLabel-root.Mui-focused": {
-              color: "#1DD63A",
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: '#1DD63A',
             },
           }}
         />
@@ -317,13 +318,13 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
           readOnly: isReadOnly,
         }}
         sx={{
-          "& .MuiOutlinedInput-root": {
-            "&.Mui-focused fieldset": {
-              borderColor: "#1DD63A",
+          '& .MuiOutlinedInput-root': {
+            '&.Mui-focused fieldset': {
+              borderColor: '#1DD63A',
             },
           },
-          "& .MuiInputLabel-root.Mui-focused": {
-            color: "#1DD63A",
+          '& .MuiInputLabel-root.Mui-focused': {
+            color: '#1DD63A',
           },
         }}
       />
@@ -331,9 +332,9 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
   };
 
   return (
-    <Stack sx={{ width: "100%", marginTop: "20px" }} spacing={3}>
-      <Paper sx={{ width: "100%", overflow: "hidden" }}>
-        <Typography variant="h2" sx={{ p: "25px" }}>
+    <Stack sx={{ width: '100%', marginTop: '20px' }} spacing={3}>
+      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <Typography variant="h2" sx={{ p: '25px' }}>
           Campaign History
         </Typography>
         <TableContainer sx={{ maxHeight: 440 }}>
@@ -344,10 +345,10 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
                   <TableCell
                     key={key}
                     sx={{
-                      fontWeight: "bold",
-                      backgroundColor: "primary.main",
-                      color: "#000000",
-                      bgcolor: "#F6F6F6",
+                      fontWeight: 'bold',
+                      backgroundColor: 'primary.main',
+                      color: '#000000',
+                      bgcolor: '#F6F6F6',
                     }}
                   >
                     {key}
@@ -355,10 +356,10 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
                 ))}
                 <TableCell
                   sx={{
-                    fontWeight: "bold",
-                    backgroundColor: "primary.main",
-                    color: "#000000",
-                    bgcolor: "#F6F6F6",
+                    fontWeight: 'bold',
+                    backgroundColor: 'primary.main',
+                    color: '#000000',
+                    bgcolor: '#F6F6F6',
                   }}
                 >
                   Actions
@@ -378,7 +379,7 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
                     {Object.values(campaign).map((value, cellIndex) => (
                       <TableCell key={cellIndex}>
                         {Array.isArray(value)
-                          ? value.join(", ")
+                          ? value.join(', ')
                           : String(value)}
                       </TableCell>
                     ))}
@@ -415,15 +416,15 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
         <DialogContent>
           {editedCampaign &&
             Object.entries(editedCampaign).map(([key, value]) =>
-              renderEditField(key as keyof Campaign, value)
+              renderEditField(key as keyof Campaign, value),
             )}
         </DialogContent>
         <DialogActions>
-          <Button sx={{ bgcolor: "red" }} onClick={handleEditDialogClose}>
+          <Button sx={{ bgcolor: 'red' }} onClick={handleEditDialogClose}>
             Cancel
           </Button>
           <Button
-            sx={{ bgcolor: "#1DD63A" }}
+            sx={{ bgcolor: '#1DD63A' }}
             onClick={handleEditSubmit}
             color="primary"
           >
@@ -440,7 +441,7 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDeleteDialogClose}>Cancel</Button>
-          <Button onClick={handleDeleteConfirm} sx={{ bgcolor: "red" }}>
+          <Button onClick={handleDeleteConfirm} sx={{ bgcolor: 'red' }}>
             Delete
           </Button>
         </DialogActions>
@@ -453,7 +454,7 @@ const CampaignHistory: React.FC<CampaignHistoryProps> = ({ campaignsInfo }) => {
         <Alert
           onClose={handleCloseSnackbar}
           severity={snackbar.severity}
-          sx={{ width: "100%" }}
+          sx={{ width: '100%' }}
         >
           {snackbar.message}
         </Alert>

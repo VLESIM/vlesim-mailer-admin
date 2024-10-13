@@ -1,31 +1,34 @@
-import { useState, useEffect } from "react";
-import { Layout } from "../../layout";
-import { Box, CssBaseline, Stack, Typography } from "@mui/material";
-import { SelectCampaignsReports } from "./components/SelectCampaignsReports";
-import { EmailsData } from "./components/EmailsData";
-import { EmailsDataChart } from "./components/EmailsDataChart";
-import { useApiGet } from "../../../hooks/useGetApiCalls";
-import { ApiResponse, Campaign, CampaignStats } from "./interfaces";
+import { useState, useEffect } from 'react';
+import { Layout } from '../../layout';
+import { Box, CssBaseline, Stack, Typography } from '@mui/material';
+import { SelectCampaignsReports } from './components/SelectCampaignsReports';
+import { EmailsData } from './components/EmailsData';
+import { EmailsDataChart } from './components/EmailsDataChart';
+import { useApiGet } from '../../../hooks/useGetApiCalls';
+import { ApiResponse, Campaign, CampaignStats } from './interfaces';
 
 export const ReportsByCampaign = () => {
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(
-    null
+    null,
   );
-  console.log("🚀 ~ ReportsByCampaign ~ selectedCampaign:", selectedCampaign);
+  console.log('🚀 ~ ReportsByCampaign ~ selectedCampaign:', selectedCampaign);
   const [campaignStats, setCampaignStats] = useState<CampaignStats | null>(
-    null
+    null,
   );
-  console.log("🚀 ~ ReportsByCampaign ~ campaignStats:", campaignStats);
+  console.log('🚀 ~ ReportsByCampaign ~ campaignStats:', campaignStats);
 
-  const campaignsUrl = import.meta.env.VITE_APP_POST_AND_GET_CAMPAIGNS;
-  const baseUrl = import.meta.env.VITE_APP_GET_CAMPAIGNS_ID;
+  const baseApiUrl = import.meta.env.VITE_APP_API_URL;
+  const campaignsUrl = `${baseApiUrl}/message`;
+  const statisticsByCampaign = `${baseApiUrl}/statistics/message`;
 
   const { data: campaignsData } = useApiGet<ApiResponse<Campaign[]>>({
     url: campaignsUrl,
   });
 
   const { data: statsData } = useApiGet<ApiResponse<CampaignStats>>({
-    url: selectedCampaign ? `${baseUrl}/${selectedCampaign.id}` : null,
+    url: selectedCampaign
+      ? `${statisticsByCampaign}/${selectedCampaign.id}`
+      : null,
     skip: !selectedCampaign,
   });
 
@@ -44,7 +47,7 @@ export const ReportsByCampaign = () => {
 
   return (
     <Layout>
-      <Box sx={{ maxWidth: "1600px", margin: "0 auto" }}>
+      <Box sx={{ maxWidth: '1600px', margin: '0 auto' }}>
         <CssBaseline />
         <Stack spacing={4}>
           <Stack spacing={2}>
