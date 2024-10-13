@@ -28,16 +28,17 @@ export const SuppressionList: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const urlParams = new URLSearchParams({ isSubscribed: 'false' });
-  const endpoint = import.meta.env.VITE_APP_GET_SUPRESSION_LIST;
+  const endpoint = `${import.meta.env.VITE_APP_API_URL}/user`;
   const token = localStorage.getItem('authToken');
 
   useEffect(() => {
     fetchList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const filtered = list.filter((item) =>
-      item.email.toLowerCase().includes(searchTerm.toLowerCase())
+      item.email.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     setFilteredList(filtered);
   }, [list, searchTerm]);

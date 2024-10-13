@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Stack, Switch, Typography } from "@mui/material";
+import React from 'react';
+import { Box, Stack, Switch, Typography } from '@mui/material';
 
 export const NonDeliveryReports: React.FC = () => {
   return (
@@ -8,10 +8,10 @@ export const NonDeliveryReports: React.FC = () => {
         sx={{
           width: 1000,
           padding: 3,
-          margin: "0 auto",
-          border: "1px solid #ccc",
+          margin: '0 auto',
+          border: '1px solid #ccc',
           borderRadius: 2,
-          backgroundColor: "white",
+          backgroundColor: 'white',
         }}
       >
         <Stack spacing={2}>
@@ -27,7 +27,7 @@ export const NonDeliveryReports: React.FC = () => {
           </Box>
 
           {/* Input 2 */}
-          <Box sx={{ display: "flex", flexDirection: "row" }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
             <Typography variant="h6">Non-Delivery Reports</Typography>
             <Switch />
           </Box>

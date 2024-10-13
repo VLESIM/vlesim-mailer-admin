@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   CssBaseline,
@@ -7,15 +7,15 @@ import {
   Container,
   useTheme,
   useMediaQuery,
-} from "@mui/material";
-import { Layout } from "../layout";
-import FillCampaigns from "./components/FillCampaings";
-import CampaignHistory from "./components/CampaignHistory";
-import { Campaign } from "./interfaces";
+} from '@mui/material';
+import { Layout } from '../layout';
+import FillCampaigns from './components/FillCampaings';
+import CampaignHistory from './components/CampaignHistory';
+import { Campaign } from './interfaces';
 
 const CampaignPage: React.FC = () => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [campaignsValue, setCampaignsValue] = useState<Campaign[]>([]);
 
   const addCampaign = (newCampaign: Campaign) => {
@@ -28,9 +28,9 @@ const CampaignPage: React.FC = () => {
       <Container maxWidth="xl" disableGutters={isSmallScreen}>
         <Box
           sx={{
-            width: "100%",
+            width: '100%',
             padding: theme.spacing(2),
-            [theme.breakpoints.up("md")]: {
+            [theme.breakpoints.up('md')]: {
               padding: theme.spacing(4),
             },
           }}
@@ -38,8 +38,8 @@ const CampaignPage: React.FC = () => {
           <Stack spacing={4}>
             <Stack spacing={2}>
               <Typography
-                variant={isSmallScreen ? "h3" : "h1"}
-                align={isSmallScreen ? "center" : "left"}
+                variant={isSmallScreen ? 'h3' : 'h1'}
+                align={isSmallScreen ? 'center' : 'left'}
               >
                 Campaigns
               </Typography>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Button,
   Box,
@@ -14,15 +14,15 @@ import {
   TableHead,
   TableRow,
   Paper,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { Layout } from "../../layout";
-import { webhookslData } from "./data";
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { Layout } from '../../layout';
+import { webhookslData } from './data';
 
 export const WebHooks: React.FC = () => {
   return (
     <Layout>
-      <Box sx={{ minWidth: "1400px", margin: "0 auto" }}>
+      <Box sx={{ minWidth: '1400px', margin: '0 auto' }}>
         <CssBaseline />
         <Stack spacing={4}>
           <Stack spacing={2}>
@@ -53,7 +53,7 @@ export const WebHooks: React.FC = () => {
                   </InputAdornment>
                 ),
               }}
-              sx={{ width: "300px" }}
+              sx={{ width: '300px' }}
             />
             <Stack>
               <Button variant="contained" color="primary">
@@ -94,7 +94,7 @@ export const WebHooks: React.FC = () => {
             alignItems="center"
             spacing={2}
           >
-            <Button sx={{ backgroundColor: "error.main", color: "white" }}>
+            <Button sx={{ backgroundColor: 'error.main', color: 'white' }}>
               Delete Entries
             </Button>
             <Button variant="contained" color="primary">

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
 interface UseApiGetResult<T> {
   data: T | null;
@@ -20,7 +20,7 @@ export function useApiGet<T>({
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem('authToken');
 
   const fetchData = useCallback(async () => {
     if (!url || skip) {
@@ -32,9 +32,9 @@ export function useApiGet<T>({
       setError(null);
 
       const response = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           ...(token && { Authorization: `Bearer ${token}` }),
         },
       });
@@ -47,9 +47,9 @@ export function useApiGet<T>({
       setData(result);
     } catch (e) {
       setError(
-        `Failed to fetch data. ${e instanceof Error ? e.message : String(e)}`
+        `Failed to fetch data. ${e instanceof Error ? e.message : String(e)}`,
       );
-      console.error("Error fetching data:", e);
+      console.error('Error fetching data:', e);
     } finally {
       setLoading(false);
     }

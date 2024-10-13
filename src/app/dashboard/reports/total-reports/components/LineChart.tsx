@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   LineChart,
   Line,
@@ -8,10 +8,10 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
-import { Typography, CircularProgress, Box } from "@mui/material";
-import { useApiGet } from "../../../../hooks/useGetApiCalls";
-import { ApiResponse, CampaignStats } from "../interfaces";
+} from 'recharts';
+import { Typography, CircularProgress, Box } from '@mui/material';
+import { useApiGet } from '../../../../hooks/useGetApiCalls';
+import { ApiResponse, CampaignStats } from '../interfaces';
 
 interface ChartData {
   name: string;
@@ -20,7 +20,7 @@ interface ChartData {
 
 export const LineChartComponent: React.FC = () => {
   const [chartData, setChartData] = useState<ChartData[]>([]);
-  const baseUrl = import.meta.env.VITE_APP_GET_STATISTIC_TOTAL;
+  const baseUrl = `${import.meta.env.VITE_APP_API_URL}/statistics/accumulated`;
 
   const {
     data: statsData,
@@ -31,17 +31,17 @@ export const LineChartComponent: React.FC = () => {
   useEffect(() => {
     if (statsData && statsData.data) {
       const data: ChartData[] = [
-        { name: "Bounces", value: statsData.data.totalBounces },
-        { name: "Clicks", value: statsData.data.totalClicks },
-        { name: "Opens", value: statsData.data.totalOpens },
-        { name: "Deliveries", value: statsData.data.totalDeliveries },
-        { name: "Sends", value: statsData.data.totalSends },
-        { name: "Complaints", value: statsData.data.totalComplaints },
-        { name: "Email Processes", value: statsData.data.totalEmailProcesses },
-        { name: "Delivery Delays", value: statsData.data.totalDeliveryDelays },
-        { name: "Rejections", value: statsData.data.totalRejections },
+        { name: 'Bounces', value: statsData.data.totalBounces },
+        { name: 'Clicks', value: statsData.data.totalClicks },
+        { name: 'Opens', value: statsData.data.totalOpens },
+        { name: 'Deliveries', value: statsData.data.totalDeliveries },
+        { name: 'Sends', value: statsData.data.totalSends },
+        { name: 'Complaints', value: statsData.data.totalComplaints },
+        { name: 'Email Processes', value: statsData.data.totalEmailProcesses },
+        { name: 'Delivery Delays', value: statsData.data.totalDeliveryDelays },
+        { name: 'Rejections', value: statsData.data.totalRejections },
         {
-          name: "Rendering Failures",
+          name: 'Rendering Failures',
           value: statsData.data.totalRenderingFailures,
         },
       ];
@@ -56,7 +56,7 @@ export const LineChartComponent: React.FC = () => {
     );
 
   return (
-    <Box sx={{ width: "100%", height: 400 }}>
+    <Box sx={{ width: '100%', height: 400 }}>
       <Typography variant="h3" align="center" gutterBottom>
         Trends
       </Typography>

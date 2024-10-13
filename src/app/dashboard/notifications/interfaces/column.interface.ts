@@ -1,3 +1,3 @@
 export interface Column {
-  value: string
+  value: string;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   BarChart,
   Bar,
@@ -8,9 +8,9 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from "recharts";
-import { Typography, Box } from "@mui/material";
-import { Campaign, CampaignStats } from "../interfaces";
+} from 'recharts';
+import { Typography, Box } from '@mui/material';
+import { Campaign, CampaignStats } from '../interfaces';
 
 interface EmailsDataChartProps {
   selectedCampaign: Campaign | null;
@@ -26,20 +26,20 @@ export const EmailsDataChart: React.FC<EmailsDataChartProps> = ({
   }
 
   const data = [
-    { name: "Bounces", value: campaignStats.totalBounces },
-    { name: "Clicks", value: campaignStats.totalClicks },
-    { name: "Complaints", value: campaignStats.totalComplaints },
-    { name: "Deliveries", value: campaignStats.totalDeliveries },
-    { name: "Delivery Delays", value: campaignStats.totalDeliveryDelays },
-    { name: "Opens", value: campaignStats.totalOpens },
-    { name: "Rejections", value: campaignStats.totalRejections },
-    { name: "Rendering Failures", value: campaignStats.totalRenderingFailures },
-    { name: "Sends", value: campaignStats.totalSends },
-    { name: "Subscriptions", value: campaignStats.totalSubscriptions },
+    { name: 'Bounces', value: campaignStats.totalBounces },
+    { name: 'Clicks', value: campaignStats.totalClicks },
+    { name: 'Complaints', value: campaignStats.totalComplaints },
+    { name: 'Deliveries', value: campaignStats.totalDeliveries },
+    { name: 'Delivery Delays', value: campaignStats.totalDeliveryDelays },
+    { name: 'Opens', value: campaignStats.totalOpens },
+    { name: 'Rejections', value: campaignStats.totalRejections },
+    { name: 'Rendering Failures', value: campaignStats.totalRenderingFailures },
+    { name: 'Sends', value: campaignStats.totalSends },
+    { name: 'Subscriptions', value: campaignStats.totalSubscriptions },
   ];
 
   return (
-    <Box sx={{ width: "100%", height: 400, marginTop: "2%" }}>
+    <Box sx={{ width: '100%', height: 400, marginTop: '2%' }}>
       <Typography variant="h3" align="center" gutterBottom>
         Overview: {selectedCampaign.name}
       </Typography>

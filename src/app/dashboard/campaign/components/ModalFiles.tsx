@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Modal,
   Box,
@@ -11,13 +11,13 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
-} from "@mui/material";
+} from '@mui/material';
 import {
   Close as CloseIcon,
   CloudUpload as CloudUploadIcon,
   Delete as DeleteIcon,
-} from "@mui/icons-material";
-import Papa from "papaparse";
+} from '@mui/icons-material';
+import Papa from 'papaparse';
 
 interface DocumentUploadModalProps {
   open: boolean;
@@ -30,7 +30,7 @@ const DocumentUploadModal: React.FC<DocumentUploadModalProps> = ({
   onClose,
   setEmailsList,
 }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [files, setFiles] = useState<File[]>([]);
   const [emailsList, setEmailsListRead] = useState<string[]>([]);
 
@@ -47,11 +47,11 @@ const DocumentUploadModal: React.FC<DocumentUploadModalProps> = ({
 
       // Procesar el archivo CSV
       const file = selectedFiles[0];
-      if (file && file.type === "text/csv") {
+      if (file && file.type === 'text/csv') {
         Papa.parse(file, {
           complete: (results) => {
             const emails = (results.data as string[][]).map((row) => row[0]);
-            setEmailsListRead(emails.filter((email) => email.includes("@")));
+            setEmailsListRead(emails.filter((email) => email.includes('@')));
           },
           header: false,
         });
@@ -65,7 +65,7 @@ const DocumentUploadModal: React.FC<DocumentUploadModalProps> = ({
 
   const handleSave = () => {
     if (emailsList.length > 0) {
-      console.log("Emails to use:", emailsList.join(", "));
+      console.log('Emails to use:', emailsList.join(', '));
       setEmailsListRead(emailsList);
       setEmailsList(emailsList);
     }
@@ -76,12 +76,12 @@ const DocumentUploadModal: React.FC<DocumentUploadModalProps> = ({
     <Modal open={open} onClose={onClose}>
       <Box
         sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
           width: 600,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
           boxShadow: 24,
           p: 4,
           borderRadius: 2,
@@ -91,7 +91,7 @@ const DocumentUploadModal: React.FC<DocumentUploadModalProps> = ({
           aria-label="close"
           onClick={onClose}
           sx={{
-            position: "absolute",
+            position: 'absolute',
             right: 8,
             top: 8,
           }}
@@ -117,29 +117,29 @@ const DocumentUploadModal: React.FC<DocumentUploadModalProps> = ({
           sx={{
             p: 2,
             mb: 2,
-            backgroundColor: "#f5f5f5",
-            textAlign: "center",
-            cursor: "pointer",
+            backgroundColor: '#f5f5f5',
+            textAlign: 'center',
+            cursor: 'pointer',
           }}
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
         >
           <CloudUploadIcon
-            sx={{ fontSize: 48, color: "primary.main", mb: 1 }}
+            sx={{ fontSize: 48, color: 'primary.main', mb: 1 }}
           />
           <Typography>Drag and drop a .csv file or</Typography>
           <input
             type="file"
             multiple
             onChange={handleFileInput}
-            style={{ display: "none" }}
+            style={{ display: 'none' }}
             id="file-input"
           />
           <label htmlFor="file-input">
             <Button
               component="span"
               variant="contained"
-              sx={{ mt: 1, bgcolor: "lightgray", color: "#000000" }}
+              sx={{ mt: 1, bgcolor: 'lightgray', color: '#000000' }}
             >
               Select Files
             </Button>
