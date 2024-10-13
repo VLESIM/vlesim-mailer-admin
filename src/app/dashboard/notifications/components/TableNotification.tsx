@@ -33,8 +33,8 @@ export function TableNotification({ notifications }: TableProps) {
         <TableBody>
           {notifications.map((row) => (
             <TableRow key={row.id}>
-              <TableCell>{row.campaign.name}</TableCell>
-              <TableCell>{row.message}</TableCell>
+              <TableCell>{row.message.name}</TableCell>
+              <TableCell>{row.content}</TableCell>
               <TableCell>{row.type}</TableCell>
               <TableCell>{row.updatedAt.split('T')[0]}</TableCell>
             </TableRow>

@@ -1,8 +1,8 @@
 export interface Notification {
-  campaign: { id: string; name: string };
+  message: { id: string; name: string };
   createdAt: string;
   id: string;
-  message: string;
+  content: string;
   read: boolean;
   type: 'error' | 'warning' | 'info' | 'success';
   updatedAt: string;
