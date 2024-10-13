@@ -11,9 +11,9 @@ interface NotificationProps extends NotificationInterface {
 }
 
 export function Notification({
-  message,
+  content,
   type,
-  campaign,
+  message,
   handleCloseNotifications,
   id,
   updatedAt,
@@ -40,10 +40,10 @@ export function Notification({
         </Stack>
         <Stack flex={4}>
           <Typography fontSize={'14px'} fontWeight={600} color={colors[type]}>
-            {message}
+            {content}
           </Typography>
           <Typography fontSize={'11px'} fontWeight={400}>
-            {campaign.name}
+            {message.name}
           </Typography>
         </Stack>
         <Stack height={'100%'} flex={1}>
